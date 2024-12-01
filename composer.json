@@ -1,0 +1,18 @@
+{
+    "name": "bspanyik/advent-of-code-2024",
+    "description": "This is me solving the 2024 edition of Advent of Code puzzles",
+    "type": "project",
+    "keywords": [
+        "advent-of-code",
+        "2024",
+        "puzzle",
+        "algorithms"
+    ],
+    "require": {
+        "php": "^8.3"
+    },
+    "scripts": {
+        "csf": "php-cs-fixer check src --rules=@PER-CS2.0 --diff --allow-risky=yes",
+        "stan": "phpstan analyze src --ansi --verbose"
+    }
+}
