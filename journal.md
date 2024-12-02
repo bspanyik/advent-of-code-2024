@@ -1,5 +1,32 @@
 # My thoughts along the way
 
+## [Day 2: Red-Nosed Reports](https://adventofcode.com/2024/day/2) - Unforeseen difficulties
+
+I did not expect to have serious problems on the second day, but I did. I tried to rush through the first part and made a lot of stupid mistakes. The main question was how to tell if the sequence of numbers was increasing or decreasing. PHP doesn't have a sign function, although it can be implemented with the spaceship operator (<=>), I eventually decided to store the previous difference instead and compare it to the current one to see if they were on the same side of 0. The first mistake I made was not reading the problem properly (I fear this will be a recurring theme in the future). I thought that only 1 and 2 were the allowed differences. I even managed to code this badly, I copy this bit here because it's so beautiful:
+```
+if ($currentDiff === 0 || $currentDiff > 2 || $currentDiff < 2) {
+    $isSafe = false;
+}
+```
+Yeah, that bad. :facepalm:
+
+So I had to go back, re-read the problem, figure out that 3 is allowed, and fix all the conditions. The whole thing took about 20 minutes.
+
+And then came the second part. Oh, the horror!
+
+At first glance, I misunderstood it to mean that one mistake was allowed. I added an error counter, and I thought it was done. It wasn't. Then I realized that whoops: it's not the error that's allowed, it's the omission of a value from the sequence. Ok, that didn't seem complicated either: if the result of the comparison was wrong, I would skip the current value and note that there was a value omitted, so the next time I knew the number sequence was not safe. Of course, I made a bunch of mistakes along the way, and debugged the hell out of it, but it's not so easy to go through 1000 lines, let alone tell by looking at them whether they're right or not.
+
+The realization that the wrong difference of two numbers did not tell me which number to skip came painfully late. By then, an hour had passed, I had at least 5 false attempts, and I was desperate. As it turned out, there were a few dozen cases where the first number had to be omitted, but my solution always kept the first. Great. Even then, I didn't start implementing the obvious solution, in fact, I wanted to avoid, at all costs, recreating the sequences by leaving out one number at a time. I gave up when it came to me: IT WAS ONLY DAY 2, for God's sake.
+
+Looking at other people's solutions yesterday, I was surprised to see that they used this syntax to refer to functions: `intval(...)`. This was completely new to me, I had not known this method before. Up until now, this is how I converted a string of numbers into an array of numbers, using `intval`:
+```
+array_map('intval', explode(' ', $line));
+```
+That's the old, the classic method. The new one came with PHP 8.1, and it's called [*The First-class Callable Syntax*.](https://www.php.net/manual/en/functions.first_class_callable_syntax.php) So now I know.
+
+Today's performance would earn me a C-, I guess. Hope to do better tomorrow. :pray:
+
+
 ## [Day 1: Historian Hysteria](https://adventofcode.com/2024/day/1)
 
 Yay, Advent of Code is here! :christmas_tree:
