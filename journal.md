@@ -1,5 +1,13 @@
 # My thoughts along the way
 
+## [Day 4: Ceres Search](https://adventofcode.com/2024/day/4) - Day of the SAMX.
+
+It was pretty obvious from the start that I could avoid looking "back" (in 4 extra directions) by checking the word not only for XMAS but also for SAMX. Coding took about 10 minutes, debugging another 30 (AGAIN!) because of a missing equal sign in a *less than or equal* comparison. :facepalm: Then came the second part and the surprise of the day with it, because it was *waaaaaay* easier than the first. :astonished: I mean I couldn't believe when I had the correct result after about 3 minutes of typing.
+
+Chill.
+
+I'm just a bit worried that this might be a sign of something terrible to come tomorrow. Last year day 5 was the first tough nut to crack, at least for me. I was so sure my method was correct that it took me days to realize my mistake and finally solve it. Hopefully I'll have better luck this time!
+
 
 ## [Day 3: Mull It Over](https://adventofcode.com/2024/day/3) - Darn regular expressions!
 
@@ -7,7 +15,7 @@ I hate regular expressions. Don't know why.
 
 Every time I know I have to deal with regular expressions, I also know it's not going to be smooth sailing. This time I knew I had to use `preg_match_all`, I just didn't have the slightest idea how it worked. So [I looked it up in the PHP docs page](https://www.php.net/manual/en/function.preg-match-all.php), and from the examples there I came to the conclusion that I could not only extract the whole `mul(x,y)` expression, but `x` and `y` as well. Easy peasy, lemon squeezie.
 
-For the second part I first tried to `preg_split` the text on `don't()+anything+do()`, then `implode` the rest and run part 1 on it, but it didn't work. Don't know why. J think it should have, so I might revisit this if I'll have time. But another example on the `preg_match_all` page came to the rescue: you can match several things at the same time, separated by the `pipe` character. Great. I just had to `var_dump` the results, to know how to handle it, and I was almost done, right?
+For the second part I first tried to `preg_split` the text on `don't()+anything+do()`, then `implode` the rest and run part 1 on it, but it didn't work. Don't know why. I think it should have, so I might revisit this if I'll have time. But another example on the `preg_match_all` page came to the rescue: you can match several things at the same time, separated by the `pipe` character. Great. I just had to `var_dump` the results, to know how to handle it, and I was almost done, right?
 
 Yeah, almost. First came 30 minutes of "why on the frigging earth it doesn't work?!" debugging session. The realization that I was running the `for` cycle on the size of the `$matches` array instead of the size of the first element of the array, `$matches[0]`, where the real matches were, came, again, painfully late. :shrug:
 
