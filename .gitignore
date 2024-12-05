@@ -1,3 +1,5 @@
 input.txt
 .php-cs-fixer.cache
-/vendor/
+vendor
+.idea
+
