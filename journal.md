@@ -1,5 +1,23 @@
 # My thoughts along the way
 
+## [Day 5: Print Queue](https://adventofcode.com/2024/day/5) - Under-engineering
+
+I was a little late to the party this morning because I slept in, so I only had time to read today's first part, and then I had to get on with my duties. My initial idea was to use the rules to determine the sorting order of the pages and then do something with that, but first, it seemed like a complicated process, and second, PHP is not very good at handling arrays as sets.
+
+So, the next idea was, and I later coded this to be my first solution, to prepare a `$pageRules` array that contained each page as an array key, and two arrays as items: one for all the pages that come before that key page, and another for all that come after. Then I iterated over the updates, and used a neat trick to handle the current list of pages by shifting them left one by one with `array_shift`. The current page was the one that had just been shifted out from the array. Any previous pages that had been shifted out before were treated as "before", and any pages that were still in the array were treated as "after". All I had to do was to `array_diff` them with the `$pageRules` before/after arrays that belonged to the current page. Worked surprisingly well, though it felt a bit too complex.
+
+I looked around how others solved it, and found a solution that was so much simpler than mine: it flipped the pages of the current update to use their array keys as indexes, then iterated over the rules array, checking the indexes for each pair of pages: the left one had to be smaller. I admired the idea, even more the simplicity, but I didn't like iterating over the whole rules array, since it contained hundreds of items that were irrelevant to the pages being examined. So I refactored my `$pageRules` array: it still used all pages as index keys, but they only contained the array of pages that came after them. I iterated over the updates, flipped the current list of pages for indexes, then iterated over the pages, then iterated over the rules that belonged to that particular page. It worked, still felt a bit unnecessarily complicated, but I was happy with it.
+
+Correcting the incorrectly sorted updates in the second part turned out to be much easier than the first part. Again. What is wrong with Advent of Code this year? :thinking: I had to separate and flip the rules, so that they could easily be used in an `isset`, iterate over the updates, create a correctly sorted version of the pages using `usort` with the rules, compare it to the original, count the middle ones if necessary, and it was done.
+
+And then I realized: OMG, it would have worked just as well for the first part! :facepalm: :sweat_smile:
+
+---
+Also #1, I stopped using PHP_EOL today, and I'm this close to defining the linefeed character as a new constant, LN. Still considering it.
+
+Also #2, I do not agree with the [mandatory trailing comma rule when splitting function parameters into multiple lines, as per PER-CS 2.0](https://www.php-fig.org/per/coding-style/#26-trailing-commas). It makes sense with multiline arrays, it doesn't in function calls, I think.
+
+
 ## [Day 4: Ceres Search](https://adventofcode.com/2024/day/4) - Day of the SAMX.
 
 It was pretty obvious from the start that I could avoid looking "back" (in 4 extra directions) by checking the word not only for XMAS but also for SAMX. Coding took about 10 minutes, debugging another 30 (AGAIN!) because of a missing equal sign in a *less than or equal* comparison. :facepalm: Then came the second part and the surprise of the day with it, because it was *waaaaaay* easier than the first. :astonished: I mean I couldn't believe when I had the correct result after about 3 minutes of typing.
