@@ -1,5 +1,24 @@
 # My thoughts along the way
 
+[Day 6: Guard Gallivant](https://adventofcode.com/2024/day/6) - Can't-a-loop?
+
+One day behind, it is time to admit my first failure. :worried: It looks like day 6 is last year's day 5. I'm stuck now pretty much the same I was stuck then: being so sure of myself (and my code) that I couldn't understand why it didn't produce the right result. I'm totally out of ideas.
+
+Part 1 was obvious and came out sort of automatically, without much thought.
+
+Now my first approach of part 2 was totally wrong: I was trying to block the guard at every step and checked if she, redirected, stepped on a cell she had already been on. This failed even on the test map, because it didn't count that a loop can have steps that were not part of the original path.
+
+So my second approach was to keep on moving from the redirection until I found an already passed step -- this didn't work either.
+
+Back to the drawing board, I came up with the obvious idea that probably everyone else had: get the guard's path first, then modify the map one block at a time along her path, and run her along from the beginning, as if it were *the map* she has to patrol. And it came back with 1864 blocks. Which is too few, AoC said.
+
+Well then, let's brute force it. Start with the top left cell, put a new block there if it's empty, let the guard run along, see if she escapes, and if not, it's a valid block. It's going to take so much more time, checking so many cells completely unnecessarily, but in the end it has to come up with the right result, right? Yeah, it came up with... drum roll, please... **1864 blocks**. :confounded:
+
+And that's where I am now.
+
+I have no idea what's wrong with my loop detection. What's a loop? (*Baby, don't hurt me!*) A loop is when the guard steps on the same cell, going in the same direction, where she had already been. Am I not right?! Well, obviously, not. :unamused:
+
+
 ## [Day 5: Print Queue](https://adventofcode.com/2024/day/5) - Under-engineering
 
 I was a little late to the party this morning because I slept in, so I only had time to read today's first part, and then I had to get on with my duties. My initial idea was to use the rules to determine the sorting order of the pages and then do something with that, but first, it seemed like a complicated process, and second, PHP is not very good at handling arrays as sets.
