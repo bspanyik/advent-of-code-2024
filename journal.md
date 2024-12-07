@@ -1,6 +1,63 @@
 # My thoughts along the way
 
-[Day 6: Guard Gallivant](https://adventofcode.com/2024/day/6) - Can't-a-loop?
+## [Day 6: Guard Gallivant](https://adventofcode.com/2024/day/6)Revisited: The Tale of Guard Who Was Too Efficient
+
+So, here's the story why my loop-detection failed. This is my original guard-walk algorithm:
+```
+        $ny = $gy + $dy;
+        $nx = $gx + $dx;
+        if (!isset($map[$ny][$nx])) {
+            return false;
+        }
+
+        if ($map[$ny][$nx] !== '#') {
+            $gy = $ny;
+            $gx = $nx;
+        } else {
+            if ($dx !== 0) {
+                $dy = $dx;
+                $dx = 0;
+            } else {
+                $dx = -1 * $dy;
+                $dy = 0;
+            }
+            $gy += $dy;
+            $gx += $dx;
+        }
+```
+- `$gx`, `$gy` is the current x,y position of the guard,
+- `$dx`, `$dy` is the current direction the guard is going
+
+This is how it works:
+
+1. We calculate where the guard would be after her next step, that's `$nx`, `$ny`.
+
+2. If these are pointing out of the map, the guard would leave, so no loop, goodbye.
+
+3. If not, then if she's not blocked by an object (`#`), then she goes there.
+
+4. Otherwise, she turns.
+
+    Turning is quite simple: if she was moving horizontally (`$dx !== 0`), then she'll be moving vertically from now on, pretty much the same way, as before. Otherwise, she'll move horizontally, but in the opposite of her previous vertical direction. (`$dx = -1 * $dy`)
+
+5. And after the turn, she moves in her new direction.
+```
+            $gy += $dy;
+            $gx += $dx;
+```
+And that's the problem. She shouldn't. She should *either move OR turn*, and not *turn & move* in one step. It made her quite efficient in part 1, and even at the beginning in part 2 when we were calculating her original path. But while we're **looking for a loop**, i.e. registering where she is and which direction she's moving right after each step, we're missing her position after the turn.
+
+I'll show you. This is her right before the turn: `#<`. We saved this location and direction. And this is her after the turn & move:
+```
+.^
+#.
+```
+Now we save her new location and direction. And we have just missed this: `#^`. So, next time she walks up by that object, we will **not recognize** that she's already in a loop.
+
+That's it. I commented out that two lines, and got right result. :blush:
+
+
+## [Day 6: Guard Gallivant](https://adventofcode.com/2024/day/6) - Can't-a-loop?
 
 One day behind, it is time to admit my first failure. :worried: It looks like day 6 is last year's day 5. I'm stuck now pretty much the same I was stuck then: being so sure of myself (and my code) that I couldn't understand why it didn't produce the right result. I'm totally out of ideas.
 
