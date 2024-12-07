@@ -1,7 +1,10 @@
 # My thoughts along the way
 
-## [Day 6: Guard Gallivant](https://adventofcode.com/2024/day/6)Revisited: The Tale of Guard Who Was Too Efficient
+## [Day 6: Guard Gallivant](https://adventofcode.com/2024/day/6) Revisited: The Tale of Guard Who Was Too Efficient
 
+UPDATE: My friend pointed out that turning & moving in one step wasn't *efficient*, it was plain stupid. What if there was an object right after the turn? The guard would have stepped on it, completely incorrectly. I was very lucky that there was no such turn on the map. Or, rather, unlucky, since it would have pointed out my mistake much sooner. :shrug:
+
+---
 So, here's the story why my loop-detection failed. This is my original guard-walk algorithm:
 ```
         $ny = $gy + $dy;
