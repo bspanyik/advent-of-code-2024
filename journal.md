@@ -1,5 +1,13 @@
 # My thoughts along the way
 
+## [Day 8: Resonant Collinearity](https://adventofcode.com/2024/day/8) - Draw a line
+
+The real challenge with Day 8's problem was understanding what it was all about. This time the description was a bit over the top with frequencies, antennas and antinodes.
+
+Well, the problem, actually, was to take two points on a plane, create a segment between them, and then draw the same segment from both points in opposite directions. Where their ends were, there were the so called antinodes. The only difficulty was that some antinodes were at the same x,y coordinates, so it wasn't enough to simply calculate the number of them, we had to filter out duplicates. In the second part we had to repeat the same thing until we went off the map.
+
+Easy like Sunday morning. :wink:
+
 ## [Day 7: Bridge Repair](https://adventofcode.com/2024/day/7) - Operation: Permutation
 
 Please don't look at today's code. It's ugly as hell. I hate code combinations and permutations, etc., and it shows. This is my kryptonite.
