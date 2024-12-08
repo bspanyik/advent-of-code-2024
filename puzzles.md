@@ -8,3 +8,4 @@
 [Day 4: Ceres Search](https://adventofcode.com/2024/day/4)|:white_check_mark:|:white_check_mark:| xmas in the matrix
 [Day 5: Print Queue](https://adventofcode.com/2024/day/5)|:white_check_mark:|:white_check_mark:| array-juggling, again
 [Day 6: Guard Gallivant](https://adventofcode.com/2024/day/6)|:white_check_mark:|:white_check_mark:| the too efficient guard
+[Day 7: Bridge Repair](https://adventofcode.com/2024/day/7)|:white_check_mark:|:white_check_mark:| repeating permutations
