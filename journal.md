@@ -1,5 +1,26 @@
 # My thoughts along the way
 
+## [Day 7: Bridge Repair](https://adventofcode.com/2024/day/7) - Operation: Permutation
+
+Please don't look at today's code. It's ugly as hell. I hate code combinations and permutations, etc., and it shows. This is my kryptonite.
+
+Also my solution creates all repeating permutations of all operands, regardless of whether even the very first one solves the equation. At least I implemented a cache for already generated permutations for the second part, so the next time the same number of... um... numbers comes up, I just pull all possible operands out of the cache. This makes the second part run in less than 3 seconds.
+
+---
+If you want to see a truly wonderful solution to this problem, take a look at [**vuryss's Day 7**](https://github.com/vuryss/aoc-php/blob/master/src/Event/Year2024/Day7.php). What an absolute beauty of simplicity and finesse! :heart_eyes: I'm in love with that code. Oh, how I wish I could think like him!
+
+---
+Unfortunatelly, I had to create a baseline file for phpstan because there was no way I could annotate the params for my butt ugly `permute` function that would satisfy phpstan. I don't really understand its problem. For this line where I store another completed permutation:
+```
+            $perms[] = $carry;
+```
+it says: `Parameter &$perms by-ref type of function permute() expects array<int, array<string>>, array given.`
+
+Yes, and? I mean we know what `$carry` is, I annotated it to be `string[]` or as phpstan likes to say it: `array<string>`. So why is array given? And what's the problem with that? Even if it were empty (which it is not), an empty `string[]` would itself be an `array`, wouldn't it?
+
+I hate it when messing with a linter's cryptic error messages takes longer than actually coding the solution to the problem, so I removed the annotations, and generated a baseline file, while disliking myself and phpstan equally. :shrug:
+
+
 ## [Day 6: Guard Gallivant](https://adventofcode.com/2024/day/6) Revisited: The Tale of Guard Who Was Too Efficient
 
 UPDATE: My friend pointed out that turning & moving in one step wasn't *efficient*, it was plain stupid. What if there was an object right after the turn? The guard would have stepped on it, completely incorrectly. I was very lucky that there was no such turn on the map. Or, rather, unlucky, since it would have pointed out my mistake much sooner. :shrug:

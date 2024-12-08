@@ -1,0 +1,37 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Function permute\(\) has parameter \$carry with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/day7/day7-1.php
+
+		-
+			message: '#^Function permute\(\) has parameter \$perms with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/day7/day7-1.php
+
+		-
+			message: '#^Function permute\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/day7/day7-1.php
+
+		-
+			message: '#^Function permute\(\) has parameter \$carry with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/day7/day7-2.php
+
+		-
+			message: '#^Function permute\(\) has parameter \$perms with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/day7/day7-2.php
+
+		-
+			message: '#^Function permute\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/day7/day7-2.php
