@@ -94,8 +94,8 @@ function isGuardInLoop(array $map, int $gy, int $gx, int $dy, int $dx): bool
                 $dx = -1 * $dy;
                 $dy = 0;
             }
-//            $gy += $dy;
-//            $gx += $dx;
+            // $gy += $dy;
+            // $gx += $dx;
         }
 
         if (isset($path[$gy][$gx][$dy][$dx])) {
@@ -105,4 +105,3 @@ function isGuardInLoop(array $map, int $gy, int $gx, int $dy, int $dx): bool
         $path[$gy][$gx][$dy][$dx] = 1;
     }
 }
-
