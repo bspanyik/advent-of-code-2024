@@ -10,3 +10,4 @@
 [Day 6: Guard Gallivant](https://adventofcode.com/2024/day/6)|:white_check_mark:|:white_check_mark:| the too efficient guard
 [Day 7: Bridge Repair](https://adventofcode.com/2024/day/7)|:white_check_mark:|:white_check_mark:| repeating permutations
 [Day 8: Resonant Collinearity](https://adventofcode.com/2024/day/8)|:white_check_mark:|:white_check_mark:| draw segments, then draw lines
+[Day 9: Disk Fragmenter](https://adventofcode.com/2024/day/9)|:white_check_mark:|:white_check_mark:| putting things around in a 50K array

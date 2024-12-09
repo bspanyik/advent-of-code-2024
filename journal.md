@@ -1,5 +1,20 @@
 # My thoughts along the way
 
+## [Day 9: Disk Fragmenter](https://adventofcode.com/2024/day/9) - Remember Norton SpeedDisk? Yes, I'm *that* old!
+
+I don't know if I was still too sleepy in the morning, or what, but took an enormous amount of time to figure out how the disk compression worked. That paragraph about the `12345`, which was supposed to clean everything up, was a total mess after reading it once, twice, or three times. When I finally got it, my first reaction was to check how long the input was, because I was afraid of bulding the whole disk up in the memory, uncompressed. Of course it was huge. So I tried to figure out a way to do the calculations on the fly, and to my surprise, I put it together quite quickly.
+
+This is how it works: we start at the beginning of the input array. At every even position in the array (`$i %2 == 0`) there's a file, so we do the necessary multiplications and add them to the sum. At each odd position, though, there's free space, which should be filled up from the back. We know that the total length of the array is odd, so the last array item is a file. We're gonna keep it that way. We cut the last file value from the array (`array_pop($input)`), and later the free space value before it, take note of the file id, and build a stack from of it (`array_fill(0, $last, $endId)`). Then we use this stack to fill up the empty space, as in calculating the multiplications and adding them to the sum. If there's still some empty space left, we cut the last file value again, build the stack, fill the gap, and move on. Brilliant, eh? :grin:
+
+Two things to watch out for: one is that we're eating up our array from the back, so in the head of our `while` cycle we'd better check if our item pointer is still in the array. Second: when we come out of the `while`, our stack may not be empty. The file ids still in there are waiting to be calculated and added to the sum.
+
+Reading the second part, I know I won't be able to solve it without building the complete, uncompressed disk, so I checked the value of the `$pos` variable from part 1, and it was over 50K (I expected worse), so I knew it would fit comfortably in the memory we had. I separated files and free space along the way, and worked backwards from there.
+
+The big bad catch here was that when we look for free space for our file in the back, we have to make sure we're not looking *behind* the file! This seems obvious, but I missed it, and I couldn't figure it out on my own for a long time, mainly because it didn't happen with the test data in the problem text. :( Needed a bit of help to realize where I went wrong. We also needed to clean up in the original location of the moved file. I did this with a nice trick using `array_replace` which is not a commonly used array function around here.
+
+The second solution runs for over a second, and looking at it, there's certainly room for improvement, but I'd rather save my energy for tomorrow. :wink:
+
+
 ## [Day 8: Resonant Collinearity](https://adventofcode.com/2024/day/8) - I draw the line here
 
 The real challenge with Day 8's problem was understanding what it was all about. This time the description was a bit over the top with frequencies, antennas and antinodes.
