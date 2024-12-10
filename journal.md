@@ -1,5 +1,12 @@
 # My thoughts along the way
 
+## [Day 10: Hoof It](https://adventofcode.com/2024/day/10) - Path-finding with a happy accident
+
+Nothing to be proud of today, just a quick and dirty hack, because I've got to run. Busy day. Two years ago there was a very similar path-finding problem where each step could have a maximum value difference of 2. I used the same method here, looking in the four directions for the next steps, collecting them, and then going on from there.
+
+The funny thing is that I accidentally solved part two instead of part one first, and had to filter out results with the same peaks. So when I saw what part two was about, with a smile from ear to ear, I just pressed undo 4 times in the editor. And there it was. It probably means that my part one is awfully inefficient, but *meh*... :stuck_out_tongue_winking_eye:
+
+
 ## [Day 9: Disk Fragmenter](https://adventofcode.com/2024/day/9) - Remember Norton SpeedDisk? Yes, I'm *that* old!
 
 I don't know if I was still too sleepy in the morning, or what, but took an enormous amount of time to figure out how the disk compression worked. That paragraph about the `12345`, which was supposed to clean everything up, was a total mess after reading it once, twice, or three times. When I finally got it, my first reaction was to check how long the input was, because I was afraid of bulding the whole disk up in the memory, uncompressed. Of course it was huge. So I tried to figure out a way to do the calculations on the fly, and to my surprise, I put it together quite quickly.
@@ -10,7 +17,7 @@ Two things to watch out for: one is that we're eating up our array from the back
 
 Reading the second part, I know I won't be able to solve it without building the complete, uncompressed disk, so I checked the value of the `$pos` variable from part 1, and it was over 50K (I expected worse), so I knew it would fit comfortably in the memory we had. I separated files and free space along the way, and worked backwards from there.
 
-The big bad catch here was that when we look for free space for our file in the back, we have to make sure we're not looking *behind* the file! This seems obvious, but I missed it, and I couldn't figure it out on my own for a long time, mainly because it didn't happen with the test data in the problem text. :( Needed a bit of help to realize where I went wrong. We also needed to clean up in the original location of the moved file. I did this with a nice trick using `array_replace` which is not a commonly used array function around here.
+The big bad catch here was that when we look for free space for our file in the back, we have to make sure we're not looking *behind* the file! This seems obvious, but I missed it, and I couldn't figure it out on my own for a long time, mainly because it didn't happen with the test data in the problem text. :worried: Needed a bit of help to realize where I went wrong. We also needed to clean up in the original location of the moved file. I did this with a nice trick using `array_replace` which is not a commonly used array function around here.
 
 The second solution runs for over a second, and looking at it, there's certainly room for improvement, but I'd rather save my energy for tomorrow. :wink:
 
