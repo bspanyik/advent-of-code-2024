@@ -1,5 +1,16 @@
 # My thoughts along the way
 
+## [Day 11: Plutonian Pebbles](https://adventofcode.com/2024/day/11) - Defeat on Day 11
+
+Well, when I said that permutations were my kryptonite, I meant one of them. Number theory, or whatever it is today, is definitely another one.
+
+A few years ago there was a day when monkeys took things out of our backpack and threw them around in absolute chaos, and we had to work out where our stuff would end up by adding, multiplying, and occasionally dividing their numbers. In the second part the result grew exponentially and I could never solve it. I remember the defeat. I know it was some trick with modulo arithmetic, or something like that, but to this day I still don't know what the solution was.
+
+Today's part two feels very similar. I've spent hours, written hundreds of lines of code (then deleted them), made hundreds of notes in Notepad while calculating my ass off, and I still don't feel any closer to the solution. On the other hand, I feel angry, miserable, and mostly defeated. I've calculated the number of unique numbers that could appear on the stones during this ordeal, and it's surprisingly low, around 3500. It must be something to do with caching, perhaps, but couldn't find out how. I have a 5 in my input -- I have literally hours of work in hundreds lines of notes, tables, and calculations of how it changes in each step, what's remaining, what should be stacked, what could be cached. I've noticed repeating patterns, I can figure out values and stack contents 51 steps ahead, and there's still no use in any of it. Quite frustrating.
+
+So I'm going to put this away now and let it rest. I haven't given up on it yet, but I need something else to think about before I come back to it. Again. Later. If ever. :disappointed:
+
+
 ## [Day 10: Hoof It](https://adventofcode.com/2024/day/10) - Path-finding with a happy accident
 
 Nothing to be proud of today, just a quick and dirty hack, because I've got to run. Busy day. Two years ago there was a very similar path-finding problem where each step could have a maximum value difference of 2. I used the same method here, looking in the four directions for the next steps, collecting them, and then going on from there.

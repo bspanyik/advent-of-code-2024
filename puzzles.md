@@ -12,3 +12,4 @@
 [Day 8: Resonant Collinearity](https://adventofcode.com/2024/day/8)|:white_check_mark:|:white_check_mark:| draw segments, then draw lines
 [Day 9: Disk Fragmenter](https://adventofcode.com/2024/day/9)|:white_check_mark:|:white_check_mark:| putting things around in a 50K array
 [Day 10: Hoof It](https://adventofcode.com/2024/day/10)|:white_check_mark:|:white_check_mark:| path-finding to the peak
+[Day 11: Plutonian Pebble](https://adventofcode.com/2024/day/11)|:white_check_mark:|:x:| no clue about part 2 :unamused:
