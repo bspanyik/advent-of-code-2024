@@ -1,5 +1,39 @@
 # My thoughts along the way
 
+## [Day 13: Claw Contraption](https://adventofcode.com/2024/day/13) - Elementary school maths, my dear Watson
+
+Can you recognise a system of linear equations at a glance? Because if you can, and you solved the first part that way, *the right way*, you were done: it would have worked for the second part too.
+
+Or did you, like me, go on a brute-force rampage without ever thinking: the *cheapest* way, you say? Is there even more than one way? Linear systems of equations have the peculiar way of *usually* (i.e. always) having *one* solution for each unknown. But who cares, right? Let's run a loop to a hundred, multiply, subtract, divide, check for remainders, store the result in an array! Don't forget to sort that array, regardless of having only one item in it, to make sure you put the lowest of items (of the one) first, then sit back and enjoy a good result. Oh, the smell of *being so smart* early in the morning! :satisfied:
+
+Ok, now add 10000000000000 to the x and y of the prize. That's 13 zeros if I'm counting correctly. Huh? Brute forcing won't do anymore. Better  start thinking like any 13-year-old elementary schoolboy in a maths class:
+```
+Button A: X+94, Y+34
+Button B: X+22, Y+67
+Prize: X=8400, Y=5400
+
+94a + 22b = 8400
+34a + 67b = 5400
+
+34a = 5400 - 67b --> a = (5400 - 67b) / 34
+
+       (5400 - 67b)
+94 * ---------------- + 22b = 8400
+             34
+
+94 * 5400 - 94 * 67b + 34 * 22b = 34 * 8400 --> 507600 - 6298b + 748b = 285600
+
+6298b - 748b = 507600 - 285600 --> 5550b = 222000 --> b = 40
+```
+...and so on. All you need to do is translate this correctly into your 6 different but very similarly named variables, all with `a` and `b` and `x` and `y`, and `prize`. 30 minutes of continuous swearing. Here's what you get if you've done it right:
+```
+     (aX * prizeY - aY * prizeX)
+b = ------------------------------
+         aX * bY - aY * $bX
+```
+This `b` and then, later, `a` must be an integer, and you're done. Only 6-7 lines of readable code, no loops, just pure maths. What is the name of that smell, I wonder. :smirk:
+
+
 ## [Day 12: Garden Groups](https://adventofcode.com/2024/day/12) - All sides of the story
 
 There is this phenomenon, where you go test by test, always fixing something in the code, until all the tests pass. Then you run it on your real input and it fails. This day we had lots of test cases, not just 1 or 2 as usual, but the input file was huge, with hundreds of garden plots, and I had no idea how to debug it efficiently. Luckily, I didn't even have time to think about it too much.
