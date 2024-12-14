@@ -23,7 +23,7 @@ for ($i = 0; $i < 25; $i++) {
             continue;
         }
 
-        $half = $length / 2;
+        $half = intdiv($length, 2);
         $newStones[] = (int) substr((string) $stone, 0, $half);
         $newStones[] = (int) substr((string) $stone, $half);
     }
