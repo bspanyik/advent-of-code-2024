@@ -1,5 +1,21 @@
 # My thoughts along the way
 
+## [Day 12: Garden Groups](https://adventofcode.com/2024/day/12) - All sides of the story
+
+There is this phenomenon, where you go test by test, always fixing something in the code, until all the tests pass. Then you run it on your real input and it fails. This day we had lots of test cases, not just 1 or 2 as usual, but the input file was huge, with hundreds of garden plots, and I had no idea how to debug it efficiently. Luckily, I didn't even have time to think about it too much.
+
+
+I came back to it a day later (after solving the fairly easy Day 13 problems in the morning, but more on that later). My idea, after much deliberation, was to find neighbouring blocks around the plots, and separate them by checking whether the boundary between them and the plot blocks is horizontal or vertical. Then I went through the data collected, and tried to draw conclusions about the sides or edges of the plots. If two boundary blocks were next to each other, that counted as one side. Inner boundary blocks, aka *holes* were counted as 2-2 sides. In the end it worked perfectly on all test cases, but not on the real garden, my input.
+
+So I decided to "cheat". I downloaded someone else's solution, and while trying to see as little of the logic as possible, I edited it to produce statistics about the real sides of the plots, and then I compared them to mine. I quickly found differences, where my solution was missing ONE edge somewhere. I copied a test plot, a 186-block area with completely irregular shape, from the input file into Google Sheets, and started to work out the horizontal and vertical edges by hand, comparing them with what my code found. And there it was, staring back at me, the flaw in my algorithm: two consecutive vertical boundary blocks (see the exclamation marks in the image below) with two different edges. The top on has and edge on the right, while the bottom on the left. So they were not part of *one side*, but two.
+```
+AAAAA
+A.!AA
+AA!..
+```
+It wasn't enough to separate them horizontally and vertically. They had to be separated by discrete directions or positions: top, bottom, left, right. Surprisingly, this made the code shorter and the logic less complicated.
+
+
 ## [Day 11: Plutonian Pebbles](https://adventofcode.com/2024/day/11) - Defeat on Day 11
 
 Well, when I said that permutations were my kryptonite, I meant one of them. Number theory, or whatever it is today, is definitely another one.
