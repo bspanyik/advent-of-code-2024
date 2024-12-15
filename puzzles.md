@@ -16,3 +16,4 @@
 [Day 12: Garden Groups](https://adventofcode.com/2024/day/12)|:white_check_mark:|:white_check_mark:|gardens, regions, perimeters, sides
 [Day 13: Claw Contraption](https://adventofcode.com/2024/day/13)|:white_check_mark:|:white_check_mark:|system of linear equations
 [Day 14: Restroom Redoubt](https://adventofcode.com/2024/day/14)|:white_check_mark:|:white_check_mark:|patrolling robots make xmas tree
+[Day 15: Warehouse Woes](https://adventofcode.com/2024/day/15)|:white_check_mark:|:white_check_mark:|robot pushes crates in a warehouse

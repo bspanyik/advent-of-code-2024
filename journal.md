@@ -1,5 +1,21 @@
 # My thoughts along the way
 
+## [Day 15: Warehouse Woes](https://adventofcode.com/2024/day/15) - Sokoban
+Sometimes you get lucky. Sometimes you instinctively come up with a code that is small, efficient, and cleverly avoids the traps built into the task. Like pushing two double-wide crates with an empty space between them against two sides of a wall:
+```
+########
+...#....
+.[].[]..
+..[][]..
+...[]...
+...@....
+```
+I don't know if this really happened in the second part, because I simply didn't think of such strange edge cases. I was later talking to my dad about part 2 and he mentioned that he was struggling with pushing weird shapes of multiple crates and holes between them vertically, and I was like, wow, I hadn't even thought of that. :sweat_smile: Somehow I managed to write an algorithm for vertical crate-pushing on the first try (or rather, with a quick simplification, on the second try) that got through all the built-in traps. Yeah, I was surprised too.
+
+By the way, **Sokoban** (or [Soko-Ban](https://en.wikipedia.org/wiki/Soko-Ban)) was a logic puzzle game on ancient PCs in the late 80s. As far as I can remember I played both the Commodore 64 and the early PC AT version (this was the pre-286 era of Intel CPUs) with CGA graphics. In this game you were a warehouse worker in a maze-like warehouse with lots of crates, and you had to push them to their designated places. See its [Wikipedia page](https://en.wikipedia.org/wiki/Sokoban) for more information.
+
+![Screenshot of the PC version of Soko-Ban with CGA graphics](src/day15/sokoban.jpg)
+
 ## [Day 14: Restroom Redoubt](https://adventofcode.com/2024/day/14) - Destroy him, my robots! Or make a Xmas tree instead?
 
 So many things to talk about! :blush:
