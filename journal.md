@@ -1,5 +1,50 @@
 # My thoughts along the way
 
+## [Day 14: Restroom Redoubt](https://adventofcode.com/2024/day/14) - Destroy him, my robots! Or make a Xmas tree instead?
+
+So many things to talk about! :blush:
+
+The day before had taught us to use maths instead of jumping into a loop of crazy and mostly unnecessary calculations and operations, right? I knew I could calculate where the robots would end up after 100 seconds, regardless of their neat trick of teleporting (as in wrapping around the room). I just had to use *modulo*.
+
+Now here's the problem: modulo sometimes doesn't work the way you expect it to. If you open Calculator in Windows, set it to scientific mode, and type `-2 mod 7`, you'll get `5`. That would be perfect. If we have a room that is `11` blocks wide and `7` blocks high, and there's robot at the position of `4,1` that's going diagonally at the speed of `2, -3` blocks per second, it's going to end up at block `6, -2` in the next second. `-2` means it reaches the top wall and teleports to the other end of the room, then moves 2 blocks up, so it would actually end up at `6, 5`. And this is exactly what `-2 mod 7` predicted. (Obviously, we count the blocks in the room from zero.) We know its starting position, we know its speed, so we know exactly where it's going to be! Great!
+
+Then let's open PHP's interactive shell in the command line, and try this:
+```
+$ php -a
+Interactive shell
+
+php > echo -2 % 7;
+-2
+```
+Uh, what? There's an [excellent article on this in Wikipedia](https://en.wikipedia.org/wiki/Modulo). The actual implementation depends on the programming language you are using. C-based languages, such as PHP, define it like this:
+```
+mod(a, n) = a - n * intdiv(a / n)
+```
+while Python follows *Donald Knuth*'s definition:
+```
+mod(a, n) = a - n * floor(a / n)
+```
+The difference is in the treatment of the original division. In PHP, it's truncated to the nearest integer: `-2 / 7` is `-0.28571428571429`, so truncated it becomes `0`. On the other hand, `floor(-2 / 7)` is `-1`!
+
+So what can we do? [This excellent article from 2011](https://torstencurdt.com/tech/posts/modulo-of-negative-numbers/) suggests using the ternary operator or applying the modulo twice. I prefer the latter, or at least this is what I came up with when calculated the position of the robots:
+```
+$x = (($rx + $vx * STEPS) % WIDTH + WIDTH) % WIDTH;
+```
+Now, about the second part. Probably the shortest problem definition ever. :rofl: At first, like many others, I was annoyed. Robots arranging themselves into a picture of a Christmas tree can be a lot of different things. What Christmas tree? What does it look like? A sample image would have been useful.
+
+To be honest, I had no idea what to do, so I went to [reddit for inspiration](https://www.reddit.com/r/adventofcode/). I found dozens of memes that made me laugh, especially the one about how the lesson of the previous days was about thinking ahead and using maths instead of iterating over steps, while this time the second part was all about iterating until God knows when. :stuck_out_tongue_closed_eyes: That really resonated with me deeply. I also found memes about generating thousands of images to find the one with the Christmas tree, animations showing how the robots got to this wonderful state, ideas about what the quadrants meant in part one and how they could help to solve part two, so I've decided to implement most of them, just to practice and learn something new.
+
+The beautiful idea of the robots all being in different locations while participating in the Christmas tree image came from [Neil Thistlethwaite's video on Youtube](https://www.youtube.com/watch?v=U3SoVMGpF-E). Just imagine how you would create the input file for such a task! You'd work backwards, of course: draw the majestic Christmas tree with a few hundred "robots" first, then randomly add a few more until you get to 500. Add random velocity to each, then calculate where they would all end up (or start from) in a gazillion thousands of steps, back in time. There you go! So, when the number of the robots in the input file equals the number of the discrete locations of all those robots, that's probably where the tree happens. This is `day14-2.php`. I also created a variant (`day14-2a.php`) that echoes out the image to the console.
+
+Next, I wanted to learn how to create images with PHP. So I installed the `gd` extension, then after googling around for good examples I ended up with `day14-2b.php` using `imagecreate`, `imagecolorallocate`, `imagesetpixel`, and `imagepng`. It wasn't too difficult, although `phpstan` annoyed the hell out of me by saying that the `$color` parameter of `imagesetpixel`, which came directly from `imagecolorallocate`, might not be safe to use. So I forced it to be an integer on line 31. In a surprisingly few seconds I had a folder with 10K images. Here's what it looked like in File Explorer:
+
+![Screenshot of File Explorer with thumbnails of the generated images, including the one with the Christmas tree](src/day14/xmastree-cropped.png)
+
+Finally, I wanted to do something with the quadrants and the safety factor from part one (`day14-2c.php`). This idea also came from reddit, but I wrote it hours later and I couldn't remember if I should calculate the highest or the lowest safety factor I had to go for. I went for the highest first, and it turned out to be the lowest.
+
+All in all, a very fun problem with memorable lessons. :christmas_tree:
+
+
 ## [Day 13: Claw Contraption](https://adventofcode.com/2024/day/13) - Elementary school maths, my dear Watson
 
 Can you recognise a system of linear equations at a glance? Because if you can, and you solved the first part that way, *the right way*, you were done: it would have worked for the second part too.
